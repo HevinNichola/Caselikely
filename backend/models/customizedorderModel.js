@@ -4,8 +4,9 @@ const customizedOrderSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
       required: true,
+      ref: "User",
+    
     },
     screenshot: {
       type: String, // Path to the screenshot image
@@ -25,6 +26,7 @@ const customizedOrderSchema = mongoose.Schema(
     },
     price: {
       type: Number,
+     
     },
     isPaid: {
       type: Boolean,
@@ -40,6 +42,23 @@ const customizedOrderSchema = mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
+    shippingAddress: {
+      address: { type: String,  },
+      city: { type: String, },
+      postalCode: { type: String,  },
+      country: { type: String, },
+    },
+    paymentMethod: {
+      type: String,
+      
+    },
+    paymentResult: {
+      id: { type: String },
+      status: { type: String },
+      update_time: { type: String },
+      email_address: { type: String },
+    },
+    
   },
   {
     timestamps: true,

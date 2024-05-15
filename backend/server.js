@@ -9,6 +9,7 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import customizedOrderRoutes from './routes/customizedorderRoutes.js';
 
 const port = process.env.PORT || 5000;
 
@@ -16,9 +17,13 @@ connectDB(); // connect to MangoDB
 
 const app = express();
 
+// // Body parser middleware
+// app.use(express.json());
+// app.use(express.urlencoded({extended: true}));
+
 // Body parser middleware
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.json({ limit: '10mb' })); // Increase the limit as needed
+app.use(express.urlencoded({ extended: true }));
 
 //Cookie parser middleware
 app.use(cookieParser());
@@ -33,6 +38,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/customizedorders', customizedOrderRoutes);
 
 
 app.get('/api/config/paypal', (req, res) => 
